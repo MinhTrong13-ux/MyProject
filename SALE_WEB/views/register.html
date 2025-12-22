@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Register Page</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="../CSS/register.css">
+</head>
+
+<body>
+
+<div class="card">
+    <div class="card-header">
+        <div class="icon-circle">
+            <span class="material-symbols-outlined">person_add</span>
+        </div>
+        <h1>Create Account</h1>
+        <p>
+            Join our student marketplace today.<br>
+            Already have an account?
+            <a href="#">Log in</a>
+        </p>
+    </div>
+
+    <form action="/SALE_WEB/api/auth/register.php" method="POST">
+        <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <div class="input-wrapper">
+                <span class="material-symbols-outlined">badge</span>
+                <input type="text" id="full_name" name="name" placeholder="John Doe" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <div class="input-wrapper">
+                <span class="material-symbols-outlined">mail</span>
+                <input type="email" id="email" name="email" placeholder="john@university.edu" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+                <span class="material-symbols-outlined">lock</span>
+                <input type="password" id="password" name="password" minlength="8" placeholder="••••••••" required>
+            </div>
+            <div class="helper-text">Must be at least 8 characters long.</div>
+        </div>
+
+        <button type="submit">Create Account</button>
+    </form>
+</div>
+
+</body>
+</html>
