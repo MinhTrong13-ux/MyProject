@@ -24,10 +24,11 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     <aside class="sidebar">
         <h2 class="logo">AdminPanel</h2>
         <nav>
-            <a href="../dashboard.php">Dashboard</a>
-            <a class="active" href="products.php">Products</a>
-            <a href="../orders.php">Orders</a>
-            <a href="../users.php">Users</a>
+           <a href="dashboard.php">Dashboard</a>
+<a class="active" href="/SALE_WEB/api/admin/products.php">Products</a>
+<a href="/SALE_WEB/api/admin/orders.php">Orders</a>
+<a href="users.php">Users</a>
+
         </nav>
         <a class="logout" href="../../api/auth/logout.php">Logout</a>
     </aside>
@@ -75,7 +76,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         </div>
         <div>
             <label>Stock</label>
-            <input type="number" name="stock" value="0" min="0">
+            <input type="number" name="stock"  min="0">
         </div>
     </div>
 

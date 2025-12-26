@@ -1,31 +1,30 @@
 <?php
-require_once __DIR__ . '/../config/db.php';
 session_start();
+require_once __DIR__ . '/../config/db.php';
 
-$email = $_POST['email'] ?? '';
+$email    = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
 
-$sql = "SELECT id, name, password, role FROM users WHERE email = ?";
+$sql = "SELECT Id, Email, Password, Role FROM users WHERE Email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
 $stmt->execute();
-$result = $stmt->get_result();
+$user = $stmt->get_result()->fetch_assoc();
 
-if ($result->num_rows == 0) {
-    echo "Sai email hoặc mật khẩu";
+if (!$user || !password_verify($password, $user['Password'])) {
+    die('Sai tài khoản hoặc mật khẩu');
+}
+
+/* LƯU SESSION */
+$_SESSION['user_id'] = $user['Id'];
+$_SESSION['email']   = $user['Email'];
+$_SESSION['role']    = $user['Role'];
+
+/* ĐIỀU HƯỚNG THEO ROLE */
+if ($user['Role'] === 'admin') {
+    header('Location: /SALE_WEB/api/admin/products.php');
     exit;
 }
 
-$user = $result->fetch_assoc();//Lấy 1 dòng dữ liệu từ kết quả truy vấn MySQL
-
-if (!password_verify($password, $user['password'])) {
-    echo "Sai email hoặc mật khẩu";
-    exit;
-}
-
-// Lưu session
-$_SESSION['user_id'] = $user['id'];
-$_SESSION['role'] = $user['role'];
-
-echo "Đăng nhập thành công";
-?>
+header('Location: /SALE_WEB/index.php');
+exit;

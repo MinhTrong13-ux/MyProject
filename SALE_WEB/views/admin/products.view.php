@@ -29,7 +29,7 @@
 
         <div class="top">
             <h1>Products</h1>
-            <a href="add_product.php" class="btn-primary">Add Product</a>
+            <a href="/SALE_WEB/views/admin/add_product.php" class="btn-primary">Add Product</a>
         </div>
 
         <table>
